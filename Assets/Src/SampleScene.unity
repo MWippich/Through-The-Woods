@@ -470,6 +470,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5475726, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8194540, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -481,6 +485,14 @@ PrefabInstance:
     - target: {fileID: 13693334, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010547881750, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: snapLeftHand
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010547881750, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: snapLeftAction.actionPath
+      value: /actions/default/in/SnapTurnLeft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
@@ -562,6 +574,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4279449019447086, guid: eded051879df4c147b9010199d240258, type: 3}
   m_PrefabInstance: {fileID: 1809901031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &511406654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 125964, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+  m_PrefabInstance: {fileID: 249587838}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &582734304 stripped
 Transform:
@@ -1292,70 +1309,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 0
---- !u!1 &1374394647
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1483824241731922, guid: 596e593361e094a43934c013fa0b5764, type: 3}
-  m_PrefabInstance: {fileID: 1571797423}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1374394649}
-  - component: {fileID: 1374394648}
-  m_Layer: 0
-  m_Name: TobiiXR Initializer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1374394648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114404013065818992, guid: 596e593361e094a43934c013fa0b5764, type: 3}
-  m_PrefabInstance: {fileID: 1571797423}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374394647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323f6169a2404ef4293c9be9671a1803, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Settings:
-    EyeTrackingFilter: {fileID: 0}
-    StandaloneEyeTrackingProviders:
-    - TypeName: HTCProvider
-    - TypeName: Tobii.XR.TobiiProvider
-    - TypeName: Tobii.XR.NoseDirectionProvider
-    - TypeName: Tobii.XR.MouseProvider
-    AndroidEyeTrackingProviders:
-    - TypeName: Tobii.XR.PicoXRProvider
-    - TypeName: Tobii.XR.TobiiProvider
-    - TypeName: Tobii.XR.NoseDirectionProvider
-    - TypeName: Tobii.XR.MouseProvider
-    LayerMask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    HowLongToKeepCandidatesInSeconds: 1
-    AdvancedEnabled: 0
-    OcumenLicense: 
-    PopupLicenseValidationErrors: 0
-    LicenseAsset: {fileID: 0}
---- !u!4 &1374394649
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4789807657892548, guid: 596e593361e094a43934c013fa0b5764, type: 3}
-  m_PrefabInstance: {fileID: 1571797423}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374394647}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1537681937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,11 +1529,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bd90dca647c2241b603acecef145c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAction:
+  moveDirectionAction:
     actionPath: /actions/platformer/in/Move
+    needsReinit: 0
+  moveActions:
+  - actionPath: /actions/default/in/Teleport
+    needsReinit: 0
+  - actionPath: /actions/default/in/SnapTurnLeft
+    needsReinit: 0
+  - actionPath: /actions/default/in/SnapTurnRight
     needsReinit: 0
   activate:
     actionSetPath: /actions/platformer
+  playerCamera: {fileID: 511406654}
+  moveSpeed: 2
+  maxSpeedThreshold: 0.8
 --- !u!1 &1745461967
 GameObject:
   m_ObjectHideFlags: 0
