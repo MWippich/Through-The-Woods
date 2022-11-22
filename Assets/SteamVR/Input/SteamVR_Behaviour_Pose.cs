@@ -109,6 +109,14 @@ namespace Valve.VR
             historyBuffer.Clear();
         }
 
+        public void forceUpdateTransform()
+        {
+            if (onTransformUpdated != null)
+                onTransformUpdated.Invoke(this, inputSource);
+            if (onTransformUpdatedEvent != null)
+                onTransformUpdatedEvent.Invoke(this, inputSource);
+        }
+
         private void SteamVR_Behaviour_Pose_OnUpdate(SteamVR_Action_Pose fromAction, SteamVR_Input_Sources fromSource)
         {
             UpdateHistoryBuffer();

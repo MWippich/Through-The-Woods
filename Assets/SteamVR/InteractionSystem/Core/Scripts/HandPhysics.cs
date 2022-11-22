@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -16,6 +17,9 @@ namespace Valve.VR.InteractionSystem
         public HandCollider handColliderPrefab;
         [HideInInspector]
         public HandCollider handCollider;
+
+
+        private bool disablePhysics = false;
 
         [Tooltip("Layers to consider when checking if an area is clear")]
         public LayerMask clearanceCheckMask;
@@ -62,9 +66,10 @@ namespace Valve.VR.InteractionSystem
         const int wristBone = SteamVR_Skeleton_JointIndexes.wrist;
         const int rootBone = SteamVR_Skeleton_JointIndexes.root;
 
+        
         private void FixedUpdate()
         {
-            if (hand.skeleton == null) return;
+            if (hand.skeleton == null || disablePhysics) return;
             initialized = true;
 
             UpdateCenterPoint();
@@ -75,6 +80,23 @@ namespace Valve.VR.InteractionSystem
                 handCollider.TeleportTo(targetPosition, targetRotation);
 
             UpdateFingertips();
+        }
+
+        public void onMoving(bool moving)
+        {
+            if (moving)
+            {
+                initialized = false;
+                disablePhysics = true;
+            }
+            else
+            {
+                disablePhysics = false;
+                initialized = true;
+                UpdateHand(null, GetComponent<SteamVR_Behaviour_Pose>().inputSource);
+                handCollider.TeleportTo(targetPosition, targetRotation);
+                FixedUpdate();
+            }
         }
 
         private void UpdateCenterPoint()
@@ -183,7 +205,7 @@ namespace Valve.VR.InteractionSystem
             */
         }
 
-        void UpdateHand(SteamVR_Behaviour_Pose pose, SteamVR_Input_Sources inputSource)
+        public void UpdateHand(SteamVR_Behaviour_Pose pose, SteamVR_Input_Sources inputSource)
         {
             if (!initialized) return;
 

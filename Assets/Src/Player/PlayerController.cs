@@ -4,18 +4,20 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows;
 using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public SteamVR_Action_Vector2 moveDirectionAction;
     public List<SteamVR_Action_Boolean> moveActions;
     public SteamVR_ActionSet activate;
-    public GameObject playerCamera;
+    public GameObject playerCamera, lHand, rHand;
 
     public float moveSpeed;
     public float maxSpeedThreshold = 0.8f;
-    private Rigidbody rb; 
+    private Rigidbody rb;
 
+    private bool moving = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +37,25 @@ public class PlayerController : MonoBehaviour
 
         if (pressed)
         {
+            if (!moving)
+            {
+                lHand.GetComponent<HandPhysics>().onMoving(true);
+                rHand.GetComponent<HandPhysics>().onMoving(true);
+                moving = true;
+            }
             Vector3 moveVec = new Vector3(Mathf.Clamp(m.x, -maxSpeedThreshold, maxSpeedThreshold) / maxSpeedThreshold, 0f, Mathf.Clamp(m.y, -maxSpeedThreshold, maxSpeedThreshold) / maxSpeedThreshold);
             
             rb.MovePosition(transform.position + Vector3.ProjectOnPlane(playerCamera.transform.TransformDirection(moveVec), Vector3.up) * Time.deltaTime * moveSpeed);
+        } else
+        {
+            if (moving)
+            {
+                lHand.GetComponent<HandPhysics>().onMoving(false);
+                rHand.GetComponent<HandPhysics>().onMoving(false);
+
+                moving = false;
+            }
+
         }
 
     }
