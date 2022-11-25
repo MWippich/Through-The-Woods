@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - GazeSensitive
+  - projectile
+  - FxTemporaire
+  - TrackerOne
+  - TrackerTwo
+  - TrackerThree
   layers:
   - Default
   - TransparentFX
@@ -12,9 +17,9 @@ TagManager:
   - PlayerBody
   - Water
   - UI
-  - 
-  - 
-  - 
+  - PlayerHands
+  - Interactable
+  - Terrain
   - 
   - 
   - 

@@ -26,10 +26,13 @@ namespace Valve.VR
 {
     public class SteamVR_Fade : MonoBehaviour
     {
-        private Color currentColor = new Color(0, 0, 0, 0); // default starting color: black and fully transparent
-        private Color targetColor = new Color(0, 0, 0, 0);  // default target color: black and fully transparent
-        private Color deltaColor = new Color(0, 0, 0, 0);   // the delta-color is basically the "speed / second" at which the current color should change
+        private Color currentColor = new Color(0, 0, 0, 0);             // default starting color: black and fully transparent
+        private Color targetColor = new Color(0, 0, 0, 0);              // default target color: black and fully transparent
+        private Color deltaColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);   // the delta-color is basically the "speed / second" at which the current color should change
+       
+        private bool shouldInterpolateBack = false;
         private bool fadeOverlay = false;
+        private float flashSpeed = 1.0f;
 
         static public void Start(Color newColor, float duration, bool fadeOverlay = false)
         {
@@ -66,6 +69,8 @@ namespace Valve.VR
                 currentColor = newColor;
             }
         }
+
+
 
         static Material fadeMaterial = null;
         static int fadeMaterialColorID = -1;
@@ -125,5 +130,25 @@ namespace Valve.VR
                 GL.End();
             }
         }
+
+        private void Update()
+        {
+            if(shouldInterpolateBack && targetColor == currentColor)
+            {
+                shouldInterpolateBack = false;
+                SteamVR_Fade.Start(Color.clear, flashSpeed);
+            }
+        }
+
+        // A function that is called from outside and uses the built in Steam VR stuff to flash the screen. 
+        public void lightning_flash(float time)
+        {
+            // Just assuming that the flash is as quick in as it is out (50/50) but we can easily change it if we want to:
+            flashSpeed = time / 2;
+            shouldInterpolateBack = true;
+            Color whiteFade = new Color(1.0f, 1.0f, 1.0f, 0.05f);
+            SteamVR_Fade.Start(whiteFade, flashSpeed);
+        }
+
     }
 }

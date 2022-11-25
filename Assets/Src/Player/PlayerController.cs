@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         activate.Activate();
-
         rb = GetComponent<Rigidbody>();
     }
 
