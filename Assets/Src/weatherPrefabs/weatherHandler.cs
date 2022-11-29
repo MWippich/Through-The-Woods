@@ -29,6 +29,8 @@ public class weatherHandler : MonoBehaviour
 
     private float counter = 0f;
     private float downpourCounter = 0f;
+
+    private float thunderRandCounter = 0f;
    
 
     // Start is called before the first frame update
@@ -50,7 +52,7 @@ public class weatherHandler : MonoBehaviour
 
         // Start a rumble timer here:
         rumbleCounter = 0.0f;
-        waitTimeBeforeRumble = 1.50f / currentIntensity;
+        waitTimeBeforeRumble = 10.0f / (5.0f*currentIntensity);
         Destroy(currentThunderStrike, thunderAliveTime);
         scheduledRumble = true;
     }
@@ -58,7 +60,13 @@ public class weatherHandler : MonoBehaviour
     // Should randomize a lightning event based on the intensity currently at. 
     void randomize_for_lightning_strike()
     {
-
+        // Chance for generating a thunder strike every second: 
+        float chance = 0.05f;
+        float randomPercent = Random.Range(0f, 1.0f);
+        if(randomPercent < chance)
+        {
+            generate_lightning();
+        }
     }
 
     // Update is called once per frame
@@ -84,8 +92,13 @@ public class weatherHandler : MonoBehaviour
         }
 
         if (currentThunderStrike == null && !disableThunder) {
-            // RANDOMIZE FOR LIGHTNING HERE:
-            //generate_lightning();
+            thunderRandCounter += Time.deltaTime;
+            // RANDOMIZE FOR LIGHTNING HERE
+            if (thunderRandCounter > 1.0f)
+            {   
+                thunderRandCounter = 0.0f;
+                randomize_for_lightning_strike();
+            }
         }
         else
         {
@@ -104,7 +117,6 @@ public class weatherHandler : MonoBehaviour
             currentThunderStrike.GetComponent<AudioSource>().Play();
         }
 
-        // Test to generate lightning:
         if (Input.GetKeyDown("space"))
         {
             generate_lightning();
