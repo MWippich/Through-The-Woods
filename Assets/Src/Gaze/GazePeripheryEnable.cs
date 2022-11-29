@@ -6,8 +6,8 @@ using UnityEngine;
 public class GazePeripheryEnable : MonoBehaviour, IGazeSensitve
 {
 
-    public peripheryMinAngle = 60f;
-    public Component[] components;
+    public float peripheryMinAngle = 60f;
+    public GameObject[] enableGameObjects;
     private bool enabledAll;
 
     // Start is called before the first frame update
@@ -16,25 +16,29 @@ public class GazePeripheryEnable : MonoBehaviour, IGazeSensitve
         enabledAll = true;
     }
 
-    public void UpdateGaze(float angle, float distToPlayer, bool blinknig)
+    public void UpdateGaze(float angle, float distToPlayer, bool blinking)
     {
-        if(distToPlayer > 1 && angle >= peripheryMinAngle)
+        if (!blinking)
         {
-            if (!enabledAll)
+            if (distToPlayer > 1 && angle >= peripheryMinAngle)
             {
-                EnableAll(true);
+                if (!enabledAll)
+                {
+                    EnableAll(true);
+                }
             }
-        } else if (enabledAll)
-        {
-            EnableAll(false)
+            else if (enabledAll)
+            {
+                EnableAll(false);
+            }
         }
     }
 
     private void EnableAll(bool val)
     {
-        foreach(Component comp in components)
+        foreach(GameObject go in enableGameObjects)
         {
-            comp.enabled = val;    
+            go.SetActive(val); 
         }
         enabledAll = val;
     }
