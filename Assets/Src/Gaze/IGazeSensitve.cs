@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IGazeSensitve
 {
-    public virtual void UpdateGaze(float angleToGaze, float distToPlayer)
+    public virtual void UpdateGaze(float angleToGaze, float distToPlayer, bool blinking)
     {
 
     }

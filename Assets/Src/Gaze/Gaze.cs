@@ -59,7 +59,7 @@ public class Gaze : MonoBehaviour
             {
                 //For every IGazeSensitive component, do "UpdateGaze" with the distance to the player and the angle to the object.
                 //If the player is blinking angle is the max value of 180.
-                comp.UpdateGaze(angle, dist);
+                comp.UpdateGaze(angle, dist, currBlink);
             }
         }
     }

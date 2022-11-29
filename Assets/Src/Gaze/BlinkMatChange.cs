@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GazePeriphery : MonoBehaviour, IGazeSensitve
+public class BlinkMatChange : MonoBehaviour, IGazeSensitve
 {
 
     public Material m1, m2;
@@ -15,7 +15,7 @@ public class GazePeriphery : MonoBehaviour, IGazeSensitve
         
     }
 
-    public void UpdateGaze(float angle, float distToPlayer)
+    public void UpdateGaze(float angle, float distToPlayer, bool blinknig)
     {
         //Debug.Log(angle);
         //Debug.Log(distToPlayer);
