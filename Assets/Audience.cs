@@ -14,7 +14,7 @@ public class Audience : MonoBehaviour
 
     private void Update()
     {
-        SetCameraPosition();
+        //SetCameraPosition();
         //RenderWindow();
     }
 
