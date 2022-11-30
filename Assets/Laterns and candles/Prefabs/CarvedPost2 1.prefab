@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4044910024888608}
   m_Layer: 0
-  m_Name: CarvedPost2
+  m_Name: CarvedPost2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,8 +415,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.49876043, b: 0, a: 1}
-  m_Intensity: 2
-  m_Range: 2
+  m_Intensity: 3
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -476,7 +476,6 @@ GameObject:
   - component: {fileID: 4406454388009290}
   - component: {fileID: 33774771268444080}
   - component: {fileID: 23446148900958192}
-  - component: {fileID: 9022028572992203308}
   m_Layer: 0
   m_Name: Latern2 (1)
   m_TagString: GazeSensitive
@@ -552,21 +551,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9022028572992203308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722949657608982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b82b0aeb10a0f445b01f4b049daa156, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  peripheryMinAngle: 15
-  enableGameObjects:
-  - {fileID: 1496000405324286}
 --- !u!1 &1911262754464196
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4501098725676496
 Transform:
   m_ObjectHideFlags: 0

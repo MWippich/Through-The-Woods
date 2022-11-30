@@ -7,11 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: tree_branches
-  m_Shader: {fileID: 4800000, guid: 717bc8f73d5aea64caef02a0c07b1e3a, type: 3}
+  m_Name: redbark
+  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ALPHATEST_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -22,6 +21,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Detail:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -42,11 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1d49d1e2d8a2b97478e3e0355dbf3a07, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4e44992d8a199a546aeaaa6ebc63b91a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -57,14 +56,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _texcoord:
+    - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AO: 0
-    - _BaseLight: 0.409
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -72,21 +69,17 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 1
-    - _Occlusion: 0.62
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Shininess: 0.28980285
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SquashAmount: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 0
     m_Colors:
-    - _Color: {r: 0.9698226, g: 1, b: 0.3803922, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.3820755, b: 0.3820755, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -61,6 +61,7 @@ v2f vert (appdata_t v)
 	o.uvbump = TRANSFORM_TEX( v.texcoord, _BumpMap );
 	o.uvmain = TRANSFORM_TEX( v.texcoord, _MainTex );
 	UNITY_TRANSFER_FOG(o,o.vertex);
+
 	return o;
 }
 
