@@ -42,9 +42,12 @@ public class PlayerController : MonoBehaviour
                 rHand.GetComponent<HandPhysics>().onMoving(true);
                 moving = true;
             }
+
+            // TODO: Check whether this is correct? Move speed is currently higher backwards
             Vector3 moveVec = new Vector3(Mathf.Clamp(m.x, -maxSpeedThreshold, maxSpeedThreshold) / maxSpeedThreshold, 0f, Mathf.Clamp(m.y, -maxSpeedThreshold, maxSpeedThreshold) / maxSpeedThreshold);
-            
+
             rb.MovePosition(transform.position + Vector3.ProjectOnPlane(playerCamera.transform.TransformDirection(moveVec), Vector3.up) * Time.deltaTime * moveSpeed);
+            Debug.Log(moveVec);
         } else
         {
             if (moving)

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1168684593}
   - component: {fileID: 1168684594}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4682111654718154951}
   - component: {fileID: 4682111599345784023}
   - component: {fileID: 4682111657748589999}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4031192341621695822}
   - component: {fileID: 6689413833341953044}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 8328719419194337039}
   - component: {fileID: 8353550899345948607}
   - component: {fileID: 8344628878819035993}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Candle2.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 8173605128329493435}
   - component: {fileID: 8271161426014842727}
   - component: {fileID: 8217958909442614091}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: red_flame_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 8328378179986868073}
   - component: {fileID: 8353925425975821271}
   - component: {fileID: 8344883149795457021}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glass2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 8342943293950372637}
   - component: {fileID: 4187658338374495163}
   - component: {fileID: 6666540031938245742}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Latern2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
