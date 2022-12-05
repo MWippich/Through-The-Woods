@@ -1,7 +1,7 @@
-### Overarching story
+# Overarching story
 You're a medieval doctor, looknig for the cause of the black death.
 
-### 1 "Intro"
+# 1 "Intro"
 
 ## Interaction
 
@@ -13,7 +13,7 @@ The player will be outside the fence gate, which is closed. There's a sign which
 
 "Keep your eyes closed and listen... bla bla, enter at your own risk... (creaking from fence)"
 
-### 2 Statue
+# 2 Statue
 
 ## Whispers
 Whispers from well pointing to the tool shed.
@@ -27,7 +27,7 @@ A puzzle. You need to find the three colored cubes scattered acress the scene an
 Reward: Clicking sound, indicating the tool shed is now open. from now on, creaking sound indicating the shed is open. 
 Whispers from tool shed stop.
 
-### 2 Tool shed
+# 2 Tool shed
 
 The shed is empty, but there are whispers. Close your eyes, *evil laughter* while inside, rain and thunder will start and the scewne will get significantly darker. There is a lantern inside the shed. Now the shed is full of stuff (including the necessary item for well). Need to rifle through everything, to find the item missing from the well (TBD). 
 
@@ -35,7 +35,7 @@ Idea: It glows strangely, when looking at in your periphery.
 
 Reward: can now repair well. Whispers from the well stop (while holding the item, they will stop permanently when the well is repaired).
 
-### 3 Well
+# 3 Well
 
 Repair the well by holding the item close to the well. Now you can use the winch/crank, to pull up the bucket.
 
@@ -43,7 +43,7 @@ Perhaps: Whispers from the well that you can wind the bucket up - appears after 
 
 Reward: In the bucket is the key to the cabin.
 
-### 4 End
+# 4 End
 
 With the key in one hand you can unlock the door, by holding your hand close. The door swings open (sound appreciated), and you can enter...
 
