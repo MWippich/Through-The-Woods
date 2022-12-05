@@ -1,4 +1,4 @@
-## Overarching story
+# Overarching story
 You're a medieval doctor, looknig for the cause of the black death.
 
 # 1 "Intro"
