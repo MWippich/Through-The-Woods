@@ -35,9 +35,11 @@ public class weatherHandler : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-
-        // Starting thunder in the distance, with  flash effect:
-        generate_lightning();
+        if (!disableThunder)
+        {
+            // Starting thunder in the distance, with  flash effect:
+            generate_lightning();
+        }
     }
 
     // Instantiates a lightning bolt on the night sky:
@@ -72,6 +74,21 @@ public class weatherHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (disableRain && rain.isPlaying)
+        {
+            rain.Stop();
+            rain.GetComponent<AudioSource>().enabled = false;
+        }
+
+        if (!disableRain && rain.isStopped)
+        {
+            rain.Play();
+            rain.GetComponent<AudioSource>().enabled = true;
+        }
+
+        if (disableRain)
+            return;
+
         counter += Time.deltaTime;
         flashCounter += Time.deltaTime;
         rumbleCounter += Time.deltaTime;
@@ -97,7 +114,9 @@ public class weatherHandler : MonoBehaviour
             if (thunderRandCounter > 1.0f)
             {   
                 thunderRandCounter = 0.0f;
-                randomize_for_lightning_strike();
+
+                if (!disableThunder)
+                    randomize_for_lightning_strike();
             }
         }
         else
@@ -117,7 +136,7 @@ public class weatherHandler : MonoBehaviour
             currentThunderStrike.GetComponent<AudioSource>().Play();
         }
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !disableThunder)
         {
             generate_lightning();
         }

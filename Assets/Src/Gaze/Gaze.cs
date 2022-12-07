@@ -77,7 +77,7 @@ public class Gaze : MonoBehaviour
             blinkTime += Time.deltaTime;
             if (!longBlink && blinkTime >= longBlinkThreshold)
             {
-                //If the user blinked long enough, masrk as "long blink" and fire "longBlink" Event.
+                //If the user blinked long enough, mark as "long blink" and fire "longBlink" Event.
                 longBlink = true;
                 OnLongBlinkStart();
             }
@@ -105,12 +105,12 @@ public class Gaze : MonoBehaviour
                 blinking = false;
                 OnBlinkEnd(blinkTime);
                 numBlinks++;
-                Debug.Log(numBlinks);
+                //Debug.Log(numBlinks);
                 if (longBlink)
                 {
                     // If long blink, fire long bling event
                     numLongBlinks++;
-                    Debug.Log("long: " + numLongBlinks);
+                    //Debug.Log("long: " + numLongBlinks);
                     longBlink = false;
                     OnLongBlinkEnd(blinkTime);
                 }
@@ -125,7 +125,6 @@ public class Gaze : MonoBehaviour
 
     private void OnBlinkStart()
     {
-
         onBlinkStart.Invoke();
 
         GameObject[] gazeSensitives = GameObject.FindGameObjectsWithTag("GazeSensitive");
@@ -140,7 +139,6 @@ public class Gaze : MonoBehaviour
     }
     private void OnLongBlinkStart()
     {
-
         onLongBlink.Invoke();
 
         GameObject[] gazeSensitives = GameObject.FindGameObjectsWithTag("GazeSensitive");

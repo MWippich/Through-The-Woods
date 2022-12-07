@@ -46,8 +46,8 @@ public class BlinkChildReplace : MonoBehaviour, IGazeSensitve
             return;
         }
 
-        Debug.Log("angle:");
-        Debug.Log(currentAngle);
+        //Debug.Log("angle:");
+        //Debug.Log(currentAngle);
         if(changeOnlyInPeriphery && currentAngle <= peripheryAngle)
         {
             return;
