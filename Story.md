@@ -1,6 +1,9 @@
 # Overarching story
 You're a medieval doctor, looknig for the cause of the black death.
 
+# Initial implementation
+For the first iteration we will skip "voicelines" and "whispers" and just have a light of some sort at the location you must go to. This is to save time. If we do have enough time, whispers and the voice can be implemented.
+
 # 1 "Intro"
 
 ## Interaction
@@ -24,16 +27,22 @@ whispers from the toolshed pointing to the statue.
 
 A puzzle. You need to find the three colored cubes scattered acress the scene and place them approprately.
 
-Reward: Clicking sound, indicating the tool shed is now open. from now on, creaking sound indicating the shed is open. 
+## Reward
+Clicking sound, indicating the tool shed is now open. from now on, creaking sound indicating the shed is open. 
 Whispers from tool shed stop.
 
 # 2 Tool shed
 
+## Initial implementation
+The stuff is just there, no blinking etc. It should still get darker however, to make use of the lantern.
+
+## If we have enought time
 The shed is empty, but there are whispers. Close your eyes, *evil laughter* while inside, rain and thunder will start and the scewne will get significantly darker. There is a lantern inside the shed. Now the shed is full of stuff (including the necessary item for well). Need to rifle through everything, to find the item missing from the well (TBD). 
 
 Idea: It glows strangely, when looking at in your periphery. 
 
-Reward: can now repair well. Whispers from the well stop (while holding the item, they will stop permanently when the well is repaired).
+## Reward
+can now repair well. Whispers from the well stop (while holding the item, they will stop permanently when the well is repaired).
 
 # 3 Well
 
@@ -41,7 +50,8 @@ Repair the well by holding the item close to the well. Now you can use the winch
 
 Perhaps: Whispers from the well that you can wind the bucket up - appears after maybe 10s?
 
-Reward: In the bucket is the key to the cabin.
+## Reward
+In the bucket is the key to the cabin.
 
 # 4 End
 
