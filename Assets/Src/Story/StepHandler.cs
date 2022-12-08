@@ -15,6 +15,11 @@ public class StepHandler : MonoBehaviour, IGazeSensitve
     [Tooltip("All objects that should be activated as part of this story step")]
     [SerializeField] List<GameObject> toActivate;
 
+    [Tooltip("Size of cube within which the player's actions have an effect")]
+    [SerializeField] private Vector3 size;
+
+    [SerializeField] private Transform player;
+
     [Header("Events")]
     [SerializeField] UnityEvent onEnable;
     [SerializeField] UnityEvent onBlink;
@@ -42,6 +47,11 @@ public class StepHandler : MonoBehaviour, IGazeSensitve
         }
     }
 
+    public Transform GetPlayer()
+    {
+        return player;
+    }
+
     // Activate something on a long blink
     public void OnLongBlinkStart(float dist)
     {
@@ -57,5 +67,22 @@ public class StepHandler : MonoBehaviour, IGazeSensitve
     public void OnBlinkStart(float dist)
     {
         onBlink.Invoke();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, size);
+    }
+
+    public bool IsInCube()
+    {
+        Vector3 playerPos = player.position;
+        Vector3 pos = transform.position;
+
+        bool x = playerPos.x >= pos.x - size.x / 2 && playerPos.x <= pos.x + size.x / 2;
+        bool z = playerPos.z >= pos.z - size.z / 2 && playerPos.z <= pos.z + size.z / 2;
+        Debug.Log(x + ", " + z);
+        return x && z;
     }
 }

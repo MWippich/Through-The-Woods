@@ -12519,9 +12519,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axisOfRotation: 1
-  childCollider: {fileID: 0}
+  childCollider: {fileID: 888846723}
   linearMapping: {fileID: 0}
-  hoverLock: 0
+  hoverLock: 1
   limited: 0
   frozenDistanceMinMaxThreshold: {x: 0.1, y: 0.2}
   onFrozenDistanceThreshold:
@@ -12560,7 +12560,7 @@ MonoBehaviour:
     actionSetPath: 
   hideHandOnAttach: 1
   hideSkeletonOnAttach: 0
-  hideControllerOnAttach: 0
+  hideControllerOnAttach: 1
   handAnimationOnPickup: 0
   setRangeOfMotionOnPickup: -1
   useHandObjectAttachmentPoint: 1
@@ -16476,7 +16476,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1170724214
 Canvas:
   m_ObjectHideFlags: 0

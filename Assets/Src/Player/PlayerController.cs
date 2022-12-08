@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
             Vector3 moveVec = new Vector3(Mathf.Clamp(m.x, -maxSpeedThreshold, maxSpeedThreshold) / maxSpeedThreshold, 0f, Mathf.Clamp(m.y, -maxSpeedThreshold, maxSpeedThreshold) / maxSpeedThreshold);
 
             rb.MovePosition(transform.position + Vector3.ProjectOnPlane(playerCamera.transform.TransformDirection(moveVec), Vector3.up) * Time.deltaTime * moveSpeed);
-            Debug.Log(moveVec);
+            //Debug.Log(moveVec);
         } else
         {
             if (moving)
