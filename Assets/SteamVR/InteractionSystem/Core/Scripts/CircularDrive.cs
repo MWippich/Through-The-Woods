@@ -7,9 +7,11 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using UnityEngine.XR;
 
 namespace Valve.VR.InteractionSystem
 {
+
 
 	//-------------------------------------------------------------------------
 	[RequireComponent( typeof( Interactable ) )]
@@ -22,7 +24,11 @@ namespace Valve.VR.InteractionSystem
 			ZAxis
 		};
 
-		[Tooltip( "The axis around which the circular drive will rotate in local space" )]
+		
+        public float rotationSpeed = 0f;
+		private float lastAngle = 0f;
+
+        [Tooltip( "The axis around which the circular drive will rotate in local space" )]
 		public Axis_t axisOfRotation = Axis_t.XAxis;
 
 		[Tooltip( "Child GameObject which has the Collider component to initiate interaction, only needs to be set if there is more than one Collider child" )]
@@ -31,7 +37,9 @@ namespace Valve.VR.InteractionSystem
 		[Tooltip( "A LinearMapping component to drive, if not specified one will be dynamically added to this GameObject" )]
 		public LinearMapping linearMapping;
 
-		[Tooltip( "If true, the drive will stay manipulating as long as the button is held down, if false, it will stop if the controller moves out of the collider" )]
+        public GameObject remoteTransform;
+
+        [Tooltip( "If true, the drive will stay manipulating as long as the button is held down, if false, it will stop if the controller moves out of the collider" )]
 		public bool hoverLock = false;
 
 		[HeaderAttribute( "Limited Rotation" )]
@@ -104,9 +112,11 @@ namespace Valve.VR.InteractionSystem
 		private Hand handHoverLocked = null;
 
         private Interactable interactable;
+        [HideInInspector]
+        public SteamVR_Skeleton_Poser skeletonPoser;
 
-		//-------------------------------------------------
-		private void Freeze( Hand hand )
+        //-------------------------------------------------
+        private void Freeze( Hand hand )
 		{
 			frozen = true;
 			frozenAngle = outAngle;
@@ -126,6 +136,7 @@ namespace Valve.VR.InteractionSystem
         private void Awake()
         {
             interactable = this.GetComponent<Interactable>();
+            skeletonPoser = GetComponent<SteamVR_Skeleton_Poser>();
         }
 
         //-------------------------------------------------
@@ -190,7 +201,9 @@ namespace Valve.VR.InteractionSystem
                 handHoverLocked.HideGrabHint();
 				handHoverLocked.HoverUnlock(interactable);
 				handHoverLocked = null;
+
 			}
+
 		}
 
 
@@ -219,24 +232,43 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void OnHandHoverBegin( Hand hand )
 		{
-            hand.ShowGrabHint();
+            //hand.ShowGrabHint();
 		}
 
 
 		//-------------------------------------------------
 		private void OnHandHoverEnd( Hand hand )
 		{
-            hand.HideGrabHint();
+            //hand.HideGrabHint();
 
 			if ( driving && hand )
 			{
                 //hand.TriggerHapticPulse() //todo: fix
 				StartCoroutine( HapticPulses( hand, 1.0f, 10 ) );
-			}
+                
+            }
 
-			driving = false;
+
+
+            rotationSpeed = 0f;
+            driving = false;
 			handHoverLocked = null;
 		}
+
+		private Hand grabbingHand;
+
+        private void Update()
+        {
+            if (!driving && grabbingHand)
+            {
+                if (skeletonPoser != null)
+                {
+                    if (grabbingHand.skeleton != null)
+                        grabbingHand.skeleton.BlendToSkeleton(0.2f);
+                }
+                grabbingHand = null;
+            }
+        }
 
         private GrabTypes grabbedWithType;
 		//-------------------------------------------------
@@ -248,10 +280,15 @@ namespace Valve.VR.InteractionSystem
             if (grabbedWithType == GrabTypes.None && startingGrabType != GrabTypes.None)
             {
                 grabbedWithType = startingGrabType;
-                // Trigger was just pressed
+				// Trigger was just pressed
+				grabbingHand = hand;
                 lastHandProjected = ComputeToTransformProjected( hand.hoverSphereTransform );
+                if (skeletonPoser != null && hand.skeleton != null)
+                {
+                    hand.skeleton.BlendToPoser(skeletonPoser, 0.1f);
+                }
 
-				if ( hoverLock )
+                if ( hoverLock )
 				{
 					hand.HoverLock(interactable);
 					handHoverLocked = hand;
@@ -266,13 +303,19 @@ namespace Valve.VR.InteractionSystem
 			}
             else if (grabbedWithType != GrabTypes.None && isGrabEnding)
 			{
-				// Trigger was just released
-				if ( hoverLock )
+                // Trigger was just released
+                if (skeletonPoser != null)
+                {
+                    if (hand.skeleton != null)
+                        hand.skeleton.BlendToSkeleton(0.2f);
+                }
+                if ( hoverLock )
 				{
 					hand.HoverUnlock(interactable);
 					handHoverLocked = null;
 				}
 
+				rotationSpeed = 0f;
                 driving = false;
                 grabbedWithType = GrabTypes.None;
             }
@@ -281,6 +324,9 @@ namespace Valve.VR.InteractionSystem
 			{
 				ComputeAngle( hand );
 				UpdateAll();
+			} else
+			{
+			
 			}
 		}
 
@@ -394,7 +440,8 @@ namespace Valve.VR.InteractionSystem
 			{
 				// Map it to a [0, 1] value
 				linearMapping.value = ( outAngle - minAngle ) / ( maxAngle - minAngle );
-			}
+
+            }
 			else
 			{
 				// Normalize to [0, 1] based on 360 degree windings
@@ -402,7 +449,14 @@ namespace Valve.VR.InteractionSystem
 				linearMapping.value = flTmp - Mathf.Floor( flTmp );
 			}
 
-			UpdateDebugText();
+			float diff = lastAngle - linearMapping.value;
+			if (diff < 0.5f && diff > -0.5)
+			{
+				rotationSpeed = diff;
+				Debug.Log(rotationSpeed);
+			}
+			lastAngle = linearMapping.value;
+            UpdateDebugText();
 		}
 
 
@@ -414,6 +468,7 @@ namespace Valve.VR.InteractionSystem
 			if ( rotateGameObject )
 			{
 				transform.localRotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
+				remoteTransform.transform.localRotation = start * Quaternion.AngleAxis( outAngle, localPlaneNormal );
 			}
 		}
 
