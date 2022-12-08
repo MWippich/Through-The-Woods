@@ -101,7 +101,7 @@ public class Gate : MonoBehaviour
     public void Blink()
     {
         //Debug.Log("There was a blink");
-        if (gateOpened && !gateClosed)
+        if (!gateAudio.isPlaying && gateOpened && !gateClosed)
             CloseGate();
     }
 }

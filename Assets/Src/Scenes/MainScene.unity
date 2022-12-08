@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &8963866 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 471722, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+  m_PrefabInstance: {fileID: 249587838}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &54011708
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,14 +680,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 191996, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -727,16 +724,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1658197523, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
-      propertyPath: maxSpeedThreshold
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313186302221088425, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+    - target: {fileID: 13533284, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4313186302221088425, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
-      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2700,6 +2689,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 886b76e1f97ff7f4b8f6625deab98ee2, type: 3}
       propertyPath: m_Name
       value: statue2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3749327342489363746, guid: 886b76e1f97ff7f4b8f6625deab98ee2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6498
       objectReference: {fileID: 0}
     - target: {fileID: 3749327342489363746, guid: 886b76e1f97ff7f4b8f6625deab98ee2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5191,7 +5184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decf7b94cb6675e4586002819ffd2128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1658197522}
+  player: {fileID: 8963866}
 --- !u!1 &1702569583
 GameObject:
   m_ObjectHideFlags: 0
