@@ -22,10 +22,10 @@ TagManager:
   - Terrain
   - Invisible
   - AudienceInvisible
-  - 
-  - 
-  - 
-  - 
+  - WellBottom
+  - WellBucket
+  - PlayerBlock
+  - WellBase
   - 
   - 
   - 
