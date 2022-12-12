@@ -44,7 +44,13 @@ public class Gate : MonoBehaviour
         if (open)
             gate.rotation = Quaternion.Slerp(closedGate, openGate, t);
         else
+        {
             gate.rotation = Quaternion.Slerp(openGate, closedGate, t);
+
+            if (t >= 0.9f && stepHandler.enabled)
+                stepHandler.AdvanceStory();
+        }
+            
     }
 
     private void UpdateClip(AudioClip clip)

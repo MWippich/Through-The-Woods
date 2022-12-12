@@ -10,6 +10,9 @@ TagManager:
   - TrackerOne
   - TrackerTwo
   - TrackerThree
+  - RedCube
+  - BlueCube
+  - YellowCube
   layers:
   - Default
   - TransparentFX

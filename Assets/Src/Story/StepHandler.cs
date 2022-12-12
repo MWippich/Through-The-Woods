@@ -20,6 +20,8 @@ public class StepHandler : MonoBehaviour, IGazeSensitve
 
     [SerializeField] private Transform player;
 
+    private StoryHandler storyHandler;
+
     [Header("Events")]
     [SerializeField] UnityEvent onEnable;
     [SerializeField] UnityEvent onBlink;
@@ -31,6 +33,10 @@ public class StepHandler : MonoBehaviour, IGazeSensitve
     {
         SetAll(true);
         onEnable.Invoke();
+
+        storyHandler = GetComponentInParent<StoryHandler>();
+
+        Debug.Log("Story: " + transform.name);
     }
 
     private void OnDisable()
@@ -82,7 +88,12 @@ public class StepHandler : MonoBehaviour, IGazeSensitve
 
         bool x = playerPos.x >= pos.x - size.x / 2 && playerPos.x <= pos.x + size.x / 2;
         bool z = playerPos.z >= pos.z - size.z / 2 && playerPos.z <= pos.z + size.z / 2;
-        Debug.Log(x + ", " + z);
+
         return x && z;
+    }
+
+    public void AdvanceStory()
+    {
+        storyHandler.AdvanceStory();
     }
 }
