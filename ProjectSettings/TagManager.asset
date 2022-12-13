@@ -13,6 +13,7 @@ TagManager:
   - RedCube
   - BlueCube
   - YellowCube
+  - Key
   layers:
   - Default
   - TransparentFX

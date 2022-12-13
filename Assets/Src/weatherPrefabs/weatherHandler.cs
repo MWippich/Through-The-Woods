@@ -32,6 +32,12 @@ public class weatherHandler : MonoBehaviour
 
     private float thunderRandCounter = 0f;
    
+    public void EnableWeather()
+    {
+        generate_lightning();
+        disableRain = false;
+        disableThunder = false;
+    }
 
     // Start is called before the first frame update
     void Start() {

@@ -28,11 +28,11 @@ public class BlinkMatChange : MonoBehaviour, IGazeSensitve
         swap = !swap;
         if (swap)
         {
-            Debug.Log("m1");
+            //Debug.Log("m1");
             GetComponent<Renderer>().material = m1;
         } else
         {
-            Debug.Log("m2");
+            //Debug.Log("m2");
             GetComponent<Renderer>().material = m2;
         }
     }

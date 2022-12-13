@@ -45,7 +45,7 @@ public class StepHandler : MonoBehaviour, IGazeSensitve
     }
 
     // Activate or deactivate all relevant game objects
-    private void SetAll(bool active)
+    protected void SetAll(bool active)
     {
         foreach (GameObject go in toActivate)
         {

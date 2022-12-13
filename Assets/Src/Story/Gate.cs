@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Gate : MonoBehaviour
 {
     [SerializeField] private Transform gate;
+    [SerializeField] private bool clockwiseRotation = true;
     private Quaternion closedGate;
     private Quaternion openGate;
     
@@ -28,7 +29,11 @@ public class Gate : MonoBehaviour
 
         closedGate = gate.rotation;
         openGate = closedGate;
-        openGate.eulerAngles = closedGate.eulerAngles + new Vector3(0, -90, 0);
+
+        Vector3 r = new Vector3(0, -90, 0);
+        if (clockwiseRotation)
+            r = new Vector3(0, 90, 0);
+        openGate.eulerAngles = closedGate.eulerAngles + r;
     }
 
     private void Update()
@@ -50,7 +55,6 @@ public class Gate : MonoBehaviour
             if (t >= 0.9f && stepHandler.enabled)
                 stepHandler.AdvanceStory();
         }
-            
     }
 
     private void UpdateClip(AudioClip clip)
@@ -86,7 +90,7 @@ public class Gate : MonoBehaviour
         Vector3 playerPos = stepHandler.GetPlayer().position;
         Vector3 gatePos = gate.position;
 
-        return gatePos.z > playerPos.z && Vector3.Distance(playerPos, gatePos) > 6.0;
+        return gatePos.z > playerPos.z && Vector3.Distance(playerPos, gatePos) > 5.0;
     }
 
     public void LongBlink()

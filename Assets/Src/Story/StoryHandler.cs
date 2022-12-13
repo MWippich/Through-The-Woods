@@ -21,6 +21,11 @@ public class StoryHandler : MonoBehaviour
     {
         story = transform.GetComponentsInChildren<StepHandler>();
 
+        foreach (StepHandler step in story)
+        {
+            step.enabled = false;
+        }
+
         AdvanceStory();
     }
 

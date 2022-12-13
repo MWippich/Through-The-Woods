@@ -17,7 +17,8 @@ public class StatueHead : MonoBehaviour, IGazeSensitve
 
     private void ClampRotation()
     {
-        float y = transform.eulerAngles.y;
+        float parentY = transform.parent.eulerAngles.y;
+        float y = transform.eulerAngles.y - parentY;
 
         if (y <= maxAngle || y >= 360 - maxAngle)
             return;
@@ -27,6 +28,6 @@ public class StatueHead : MonoBehaviour, IGazeSensitve
         else if (y < 180)
             y = maxAngle;
 
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, y, transform.eulerAngles.z);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, y + parentY, transform.eulerAngles.z);
     }
 }

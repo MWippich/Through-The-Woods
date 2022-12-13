@@ -16,7 +16,7 @@ public class Torso : MonoBehaviour
         pos.x = Head.position.x;
         pos.y = (HandL.position.y + HandR.position.y) / 2;
 
-        float maxY = Head.position.y - 0.5f; //TODO: Make automatic and not hard coded
+        float maxY = Head.position.y - 0.7f; //TODO: Make automatic and not hard coded
         if (pos.y > maxY)
             pos.y = maxY;
 

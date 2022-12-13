@@ -27,9 +27,4 @@ public class PuzzleHandler : StepHandler
         }
     }
 
-    private void OnDisable()
-    {
-        //Do something.
-    }
-
 }
