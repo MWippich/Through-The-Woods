@@ -133,7 +133,7 @@ public class weatherHandler : MonoBehaviour
         if(flashCounter >= waitTimeBeforeFlash && scheduledFlash)
         {
             scheduledFlash = false;
-            VR_Camera.GetComponent<SteamVR_Fade>().lightning_flash(thunderFlashTime);
+            //VR_Camera.GetComponent<SteamVR_Fade>().lightning_flash(thunderFlashTime);
         }
 
         if(rumbleCounter >= waitTimeBeforeRumble && scheduledRumble)

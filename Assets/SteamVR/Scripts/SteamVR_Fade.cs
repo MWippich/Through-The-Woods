@@ -150,5 +150,10 @@ namespace Valve.VR
             SteamVR_Fade.Start(whiteFade, flashSpeed);
         }
 
+        public void FadeToBlack(float time)
+        {
+            Start(Color.black, time);
+        }
+
     }
 }

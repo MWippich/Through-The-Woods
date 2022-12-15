@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Valve.VR.InteractionSystem;
 
 public class WellBucket : MonoBehaviour
@@ -10,15 +11,17 @@ public class WellBucket : MonoBehaviour
     [SerializeField] GameObject key;
     [SerializeField] GameObject bucket;
 
-    private Vector3 initKeyPos;
-
     public CircularDrive circularDrive;
     public float minZ, maxZ;
+    public UnityEvent onBucketBottom;
+
+    private bool hasBeenDown = false;
+    private bool recentlyUp = true;
 
     private void Start()
     {
-        initKeyPos = key.transform.position;
         key.SetActive(false);
+        bucket.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,18 +31,37 @@ public class WellBucket : MonoBehaviour
         if(transform.localPosition.z < minZ)
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, minZ);
+            if (hasBeenDown)
+            {
+                GetKey();
+            }
         }
         if (transform.localPosition.z > maxZ)
         {
-            GetKey();
+
+            if (GetComponent<BucketPlacement>().isInWell)
+            {
+                hasBeenDown = true;
+                if (recentlyUp)
+                {
+                    onBucketBottom.Invoke();
+                    recentlyUp = false;
+                }
+            }
+            
+            
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, maxZ);
+        }
+        else
+        {
+            recentlyUp = true;
         }
     }
 
     private void GetKey()
     {
-        // TODO: Check if bucket is in well
         key.SetActive(true);
-        key.transform.position = initKeyPos;
+        bucket.SetActive(true);
+        GetComponent<BucketPlacement>().attachedBucket.SetActive(false);
     }
 }

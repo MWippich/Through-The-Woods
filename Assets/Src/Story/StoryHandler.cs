@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
  * This class handles the game's story
@@ -14,7 +15,7 @@ public class StoryHandler : MonoBehaviour
 {
     [Tooltip("All steps in story, come from children")]
     [SerializeField] private StepHandler[] story;
-    [Tooltip("Current story step")]
+    [Tooltip("Set to one lower than the step you want to be on, default -1")]
     [SerializeField] private int currentStep = -1;
 
     private void Start()
@@ -27,6 +28,23 @@ public class StoryHandler : MonoBehaviour
         }
 
         AdvanceStory();
+
+        
+    }
+
+    private void Update()
+    {
+        /*if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Reset");
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        */
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     // Deactivate current step, activate next step

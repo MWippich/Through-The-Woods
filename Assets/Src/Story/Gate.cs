@@ -8,6 +8,9 @@ public class Gate : MonoBehaviour
 {
     [SerializeField] private Transform gate;
     [SerializeField] private bool clockwiseRotation = true;
+    [SerializeField] private Light directional;
+    [SerializeField] private Material skybox;
+
     private Quaternion closedGate;
     private Quaternion openGate;
     
@@ -71,6 +74,11 @@ public class Gate : MonoBehaviour
             UpdateClip(gateOpen);
             gateAudio.Play();
             gateOpened = true;
+            RenderSettings.ambientLight = new Color(0.254902f, 0.254902f, 0.254902f);
+            RenderSettings.ambientIntensity = 0;
+            RenderSettings.skybox = skybox;
+
+            directional.intensity = 0.5f;
         }
     }
 

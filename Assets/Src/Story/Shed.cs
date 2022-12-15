@@ -9,6 +9,7 @@ public class Shed : StepHandler
     [SerializeField] private Transform rightDoor;
 
     [SerializeField] private weatherHandler weatherHandler;
+    [SerializeField] private Light directional;
 
     [SerializeField] private Transform statue;
 
@@ -22,7 +23,7 @@ public class Shed : StepHandler
     
     private void OnEnable()
     {
-        SetAll(true);
+        CustomOnEnable();
         audioSource = GetComponent<AudioSource>();
         OpenDoors();
     }
@@ -63,5 +64,9 @@ public class Shed : StepHandler
     {
         audioSource.Play();
         weatherHandler.EnableWeather();
+        RenderSettings.ambientLight = new Color(0.1f, 0.1f, 0.1f);
+        RenderSettings.ambientIntensity = 0;
+
+        directional.intensity = 0.0f;
     }
 }

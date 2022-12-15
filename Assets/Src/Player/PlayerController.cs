@@ -45,8 +45,11 @@ public class PlayerController : MonoBehaviour
 
             // TODO: Check whether this is correct? Move speed is currently higher backwards
             Vector3 moveVec = new Vector3(Mathf.Clamp(m.x, -maxSpeedThreshold, maxSpeedThreshold) / maxSpeedThreshold, 0f, Mathf.Clamp(m.y, -maxSpeedThreshold, maxSpeedThreshold) / maxSpeedThreshold);
-
-            rb.MovePosition(transform.position + Vector3.ProjectOnPlane(playerCamera.transform.TransformDirection(moveVec), Vector3.up) * Time.deltaTime * moveSpeed);
+            Vector3 movevector = Vector3.ProjectOnPlane(playerCamera.transform.TransformDirection(moveVec), Vector3.up) * Time.deltaTime * moveSpeed;
+            movevector.Normalize();
+            movevector = movevector * 0.02f;
+            Debug.Log(movevector);
+            rb.MovePosition(transform.position + movevector);
             //Debug.Log(moveVec);
         } else
         {

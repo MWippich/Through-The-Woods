@@ -31,12 +31,14 @@ public class StepHandler : MonoBehaviour, IGazeSensitve
 
     private void OnEnable()
     {
+        CustomOnEnable();
+    }
+
+    protected void CustomOnEnable()
+    {
         SetAll(true);
         onEnable.Invoke();
-
         storyHandler = GetComponentInParent<StoryHandler>();
-
-        Debug.Log("Story: " + transform.name);
     }
 
     private void OnDisable()
@@ -94,6 +96,7 @@ public class StepHandler : MonoBehaviour, IGazeSensitve
 
     public void AdvanceStory()
     {
-        storyHandler.AdvanceStory();
+        if (storyHandler)
+            storyHandler.AdvanceStory();
     }
 }
