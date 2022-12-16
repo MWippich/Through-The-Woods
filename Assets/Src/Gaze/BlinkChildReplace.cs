@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class BlinkChildReplace : MonoBehaviour, IGazeSensitve
 {
 
-    public int blinkInterval = 1;
+    public int blinkInterval = 1, secondaryBlinkInterval = 1;
     public List<GameObject> objects1, objects2;
 
     public bool changeOnlyInPeriphery = false;
@@ -53,7 +53,7 @@ public class BlinkChildReplace : MonoBehaviour, IGazeSensitve
             return;
         }
 
-        if(blinkCounter >= blinkInterval)
+        if(swap?blinkCounter >= blinkInterval : blinkCounter >= secondaryBlinkInterval)
         {
             blinkCounter = 0;
             swap = !swap;

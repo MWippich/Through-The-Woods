@@ -12,7 +12,7 @@ Shader "Clipping_Plane"{
 
     SubShader{
         //the material is completely non-transparent and is rendered at the same time as the other opaque geometry
-        Tags{ "RenderType"="Opaque" "Queue"="Geometry"}
+        Tags{ "RenderType"="Opaque" "Queue"="Geometry" "ForceNoShadowCasting" = "True"}
 
         // render faces regardless if they point towards the camera or away from it
         Cull Off

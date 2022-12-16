@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BucketPlacement : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class BucketPlacement : MonoBehaviour
     private bool attached = false;
     public GameObject attachedBucket, looseBucket;
 
+    public UnityEvent onBucketAttached;
     private void Start()
     {
         attachedBucket.SetActive(false);
@@ -50,6 +52,7 @@ public class BucketPlacement : MonoBehaviour
         if (isInWell && !isHoldingBucket && !attachedBucket.activeInHierarchy)
         {
 
+            onBucketAttached.Invoke();
             attachedBucket.SetActive(true);
             looseBucket.SetActive(false);
             attached = true;

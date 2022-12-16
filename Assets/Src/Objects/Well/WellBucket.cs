@@ -64,4 +64,9 @@ public class WellBucket : MonoBehaviour
         bucket.SetActive(true);
         GetComponent<BucketPlacement>().attachedBucket.SetActive(false);
     }
+
+    public void SetToTop()
+    {
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, minZ);
+    }
 }
